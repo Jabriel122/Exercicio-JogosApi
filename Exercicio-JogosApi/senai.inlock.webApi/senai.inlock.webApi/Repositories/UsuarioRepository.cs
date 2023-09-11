@@ -6,7 +6,7 @@ namespace senai.inlock.webApi_.Repositories
 {
     public class UsuarioRepository : IUsauarioRepository
     {
-        private string StringConexao= "Data Source =  DESKTOP-VLQ1I1C; Initial Catalog = Filme_Gabriel; User Id = sa; pwd = Senai@134";
+        private string StringConexao= "Data Source =  DESKTOP-VLQ1I1C; Initial Catalog = inlock_games; User Id = sa; pwd = Senai@134";
 
         public UsuarioDomain Logar(string email, string senha)
         {
@@ -29,7 +29,7 @@ namespace senai.inlock.webApi_.Repositories
                         {
                             IdUsuario = Convert.ToInt32(rdr["IdUsuario"]),
                             Email = rdr["email"].ToString(),
-                            //IdTipoUsuario = Convert.ToInt32(rdr["IdTipoUsuario"])
+                            IdTipoUsuario = Convert.ToInt32(rdr["IdTipoUsuario"])
                             
                         };
                         return usuario;

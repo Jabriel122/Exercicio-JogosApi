@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(options =>
         //define se o tempo de expiração será valido
         ValidateLifetime = true,
 
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("inlock-chave-autenticacao-manha")),
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("inlock-chave-autenticacao-manha-dev-api")),
 
         //forma de criptografar e valida a chave de autenticação
         ClockSkew = TimeSpan.FromMinutes(5),
@@ -51,7 +51,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "API JOGOS GABS (senai.inlock.webApi)",
-        Description = "APi para gerenciamento de filmes - Introdução a Sprint 2 - Backend API",
+        Description = "APi para gerenciamento de jogos - Introdução a Sprint 2 - Backend API",
         Contact = new OpenApiContact
         {
             Name = "Senai Informática - Turma Manhã - Gabriel Marchetti",

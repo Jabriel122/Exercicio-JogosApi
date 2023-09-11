@@ -4,7 +4,7 @@
     {
         public int IdJogo { get; set; }
 
-        public EstudioDomains Estudio { get; set; }
+        public int IdEstudio { get; set; }
 
         public string Nome { get; set; }
 
@@ -13,6 +13,5 @@
         public DateTime DataLancamento { get; set; }
 
         public int Valor { get; set; }
-
     }
 }

@@ -23,6 +23,11 @@ namespace senai.inlock.webApi_.Controller
             _usaurioRepository = new UsuarioRepository();
         }
 
+        /// <summary>
+        /// Endpoint para Logar
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(UsuarioDomain usuario)
         {
@@ -30,7 +35,7 @@ namespace senai.inlock.webApi_.Controller
             {
                 UsuarioDomain usuarioBuscado = _usaurioRepository.Logar(usuario.Email, usuario.Senha);
 
-                if (usuario == null)
+                if (usuarioBuscado == null)
                 {
                     {
                         return NotFound("Email ou Senha Inválido");
@@ -41,12 +46,10 @@ namespace senai.inlock.webApi_.Controller
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
-                    //new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario),
-
-                    new Claim("Claim Personalizada", "Valor da Claim Personalizada")
+                    new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString())
                 };
 
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("InLock-chaves-Autenticacao-webapi-dev"));
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("inlock-chave-autenticacao-manha-dev-api"));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -71,7 +74,7 @@ namespace senai.inlock.webApi_.Controller
             }
             catch (Exception error)
             {
-                return BadRequest(error);
+                return BadRequest(error.Message);
             }
         } 
     }

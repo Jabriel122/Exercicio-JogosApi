@@ -12,6 +12,6 @@ namespace senai.inlock.webApi_.Domains
         [Required(ErrorMessage = "Uma senha é obrigatório")]
         public string Senha { get; set; }
 
-        public TipoDeUsuarioDomains IdTipoUsuario { get; set; }
+        public int IdTipoUsuario { get; set; }
     }
 }

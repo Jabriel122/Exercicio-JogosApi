@@ -13,6 +13,9 @@ namespace senai.inlock.webApi_.Controller
     [ApiController]
 
     [Produces("application/json")]
+
+   
+
     public class JogosController : ControllerBase
     {
 
@@ -36,10 +39,10 @@ namespace senai.inlock.webApi_.Controller
             try
             {
                 //Cria uma lista que recebe os dados da requisição
-                List<JogosDomains> ListaGeneros = _jogosRepository.ListarTodos();
+                List<JogosDomains> ListaJogo = _jogosRepository.ListarTodos();
 
                 //Retorna a lista no formato JSON com o status code Ok(200)  
-                return Ok(ListaGeneros);
+                return Ok(ListaJogo);
             }
             catch (Exception erro)
             {
@@ -49,11 +52,12 @@ namespace senai.inlock.webApi_.Controller
         }
 
         [HttpPost]
-        public IActionResult Post(JogosDomains filmeNovo)
+        [Authorize(Roles = "2")]
+        public IActionResult Post(JogosDomains jogoNovo)
         {
             try
             {
-                _jogosRepository.Cadastre(filmeNovo);
+                _jogosRepository.Cadastre(jogoNovo);
 
                 return StatusCode(201);
             }
